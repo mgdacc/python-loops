@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Interactiva: Ciclos en Python</title>
+    <style>
+        /* === ESTILOS GLOBALES Y DE ESCRITORIO === */
+        body {
+            font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0;
+            padding: 40px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; box-sizing: border-box; transition: padding 0.3s ease;
+        }
+
+        .slideshow-container { position: relative; width: 90%; max-width: 960px; }
+        
+        .slide {
+            display: none; background-color: #fff; border: 1px solid #ccc;
+            height: 540px; padding: 40px 60px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            flex-direction: column; justify-content: center; position: relative;
+            box-sizing: border-box;
+        }
+
+        .fade { animation-name: fade; animation-duration: 0.5s; }
+        @keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+        .prev, .next {
+            cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background-color: #cccccc; color: #333;
+            border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold; font-size: 24px; transition: all 0.3s ease;
+            user-select: none; z-index: 10;
+        }
+
+        .prev { left: -70px; }
+        .next { right: -70px; }
+        .prev:hover, .next:hover { background-color: #aaaaaa; }
+
+        .slide h1 { font-size: 3.5em; text-align: center; border-bottom: 4px solid #11a800; padding-bottom: 20px; color: #005A9C; }
+        .slide h2 { font-size: 2.8em; margin-top: 0; margin-bottom: 30px; text-align: center; color: #005A9C; }
+        .single-content { text-align: center; }
+        .single-content p { font-size: 1.5em; color: #444; }
+        .single-content pre { font-size: 1.4em; display: inline-block; text-align: left; max-width: 100%; }
+        pre { background-color: #2d3436; color: #fff; padding: 15px; border-radius: 5px; font-size: 1.1em; white-space: pre-wrap; }
+        .footer { position: absolute; bottom: 20px; right: 40px; font-size: 1em; color: #888; }
+
+        /* === MEDIA QUERIES === */
+        @media screen and (max-width: 768px) {
+            body { padding: 15px; }
+            .slideshow-container { width: 100%; padding-bottom: 75px; }
+            .slide { height: auto; min-height: 75vh; padding: 20px 25px; }
+            .prev, .next { top: auto; bottom: 15px; width: 45px; height: 45px; }
+            .prev { left: 50%; transform: translateX(-110%); }
+            .next { left: 50%; transform: translateX(10%); right: auto; }
+            .slide h1 { font-size: 2.2em; }
+            .slide h2 { font-size: 1.8em; }
+            .single-content p { font-size: 1.1em; }
+            .single-content pre { font-size: 1em; }
+            .footer { font-size: 0.8em; right: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        
+        <div class="slide fade">
+            <h1>Cheat Sheet de Python</h1>
+            <h2 style="color:#333; border:none;">Ciclos (Bucles)</h2>
+            <div class="footer">1 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Ciclo: <code>for</code></h2>
+            <div class="single-content"><p>Recorre los elementos de una secuencia (lista, string, etc.).</p><pre><code>frutas = ["manzana", "banana", "cereza"]
+for fruta in frutas:
+    print(fruta)</code></pre></div>
+            <div class="footer">2 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Función: <code>range()</code></h2>
+            <div class="single-content"><p>Genera una secuencia de números para repetir tareas.</p><pre><code># Imprime números del 0 al 4
+for i in range(5):
+    print(i)</code></pre></div>
+            <div class="footer">3 / 8</div>
+        </div>
+        
+        <div class="slide fade">
+            <h2>Función: <code>enumerate()</code></h2>
+            <div class="single-content"><p>Permite obtener el índice y el valor al mismo tiempo.</p><pre><code>frutas = ["manzana", "banana"]
+for indice, fruta in enumerate(frutas):
+    print(f"{indice}: {fruta}")</code></pre></div>
+            <div class="footer">4 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Ciclo: <code>while</code></h2>
+            <div class="single-content"><p>Ejecuta un bloque de código mientras una condición sea verdadera.</p><pre><code>contador = 0
+while contador < 3:
+    print(contador)
+    contador += 1 # ¡No olvidar!</code></pre></div>
+            <div class="footer">5 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Control: <code>break</code></h2>
+            <div class="single-content"><p>Termina y sale del ciclo inmediatamente.</p><pre><code>for i in range(10):
+    if i == 3:
+        break # El ciclo se detiene aquí
+    print(i) # Salida: 0, 1, 2</code></pre></div>
+            <div class="footer">6 / 8</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Control: <code>continue</code></h2>
+            <div class="single-content"><p>Salta a la siguiente iteración, ignorando el resto del código.</p><pre><code>for i in range(5):
+    if i == 2:
+        continue # Se salta la impresión del 2
+    print(i) # Salida: 0, 1, 3, 4</code></pre></div>
+            <div class="footer">7 / 8</div>
+        </div>
+        
+        <div class="slide fade">
+            <h2>Cláusula: <code>else</code> en Ciclos</h2>
+            <div class="single-content"><p>Se ejecuta si el ciclo termina de forma natural (sin un `break`).</p><pre><code>for i in range(3):
+    print(i)
+else:
+    print("Ciclo completado.")</code></pre></div>
+            <div class="footer">8 / 8</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <script>
+        let slideIndex = 1; showSlides(slideIndex);
+        function plusSlides(n) { showSlides(slideIndex += n); }
+        function showSlides(n) {
+            let i, slides = document.getElementsByClassName("slide");
+            if (n > slides.length) { slideIndex = 1 } 
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            slides[slideIndex - 1].style.display = "flex";
+        }
+    </script>
+
+</body>
+</html>
